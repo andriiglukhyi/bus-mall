@@ -47,7 +47,7 @@ var arr3img = function () {
 
 function render(){
   var images = arr3img();
-  for (var i = 0; i<images.length;i++){
+  for (var i = 0; i<3;i++){
     document.getElementById('pic1').innerHTML = "<img src=\"img/" + images[i].url+"\">";
     document.getElementById('pic2').innerHTML = "<img src=\"img/" + images[i].url+"\">";
     document.getElementById('pic3').innerHTML = "<img src=\"img/" + images[i].url+"\">";
@@ -59,9 +59,6 @@ function render(){
 
 function newPictures(){
   while (gCounter<0){
-  pic1.addEventListener('click', render);
-  pic2.addEventListener('click', render);
-  pic1.addEventListener('click', render);
   render();
 
   }
@@ -81,5 +78,8 @@ function begining(){
 
 begining();
 
+pic1.addEventListener('click', render);
+pic2.addEventListener('click', render);
+pic3.addEventListener('click', render);
 
 newPictures();
