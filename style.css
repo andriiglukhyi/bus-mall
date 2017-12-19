@@ -18,5 +18,9 @@ section{
   display: block;
   width: 930px;
   margin-top: 50px;
-  
+
+}
+div img{
+  height: 300px;
+  width: 300px;
 }
