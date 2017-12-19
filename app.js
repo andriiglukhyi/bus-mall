@@ -48,38 +48,35 @@ var arr3img = function () {
 
 function render(){
   var images = arr3img();
-    document.getElementById('pic1').innerHTML = "<img src=\"img/" + images[0].url+"\">";
-    document.getElementById('pic2').innerHTML = "<img src=\"img/" + images[1].url+"\">";
-    document.getElementById('pic3').innerHTML = "<img src=\"img/" + images[2].url+"\">";
-  }
-  gCounter++
-
-
-
-
-function newPictures(){
-  while (gCounter<0){
-  render();
-
+    document.getElementById('pic1').innerHTML = "<img src=\"img/" + images[0].url+"\" height=\"300\" width=\"300\">";
+    document.getElementById('pic2').innerHTML = "<img src=\"img/" + images[1].url+"\" height=\"300\" width=\"300\">";
+    document.getElementById('pic3').innerHTML = "<img src=\"img/" + images[2].url+"\" height=\"300\" width=\"300\">";
+    gCounter++
   }
 
-}
+
+
+
 
 function begining(){
   newElement();
-  document.getElementById('pic1').innerHTML = "<img src=\"img/" + pictures[0].url+"\">";
-  pic2=document.getElementById('pic2');
-  pic2.innerHTML = "<img src=\"img/" + pictures[1].url+"\">";
-  pic3=document.getElementById('pic3');
-  pic3.innerHTML = "<img src=\"img/" + pictures[2].url+"\">";
+  pic1 = document.getElementById('pic1').innerHTML = "<img src=\"img/" + pictures[0].url+"\" height=\"300\" width=\"300\">";
+  pic2 = document.getElementById('pic2').innerHTML = "<img src=\"img/" + pictures[1].url+"\" height=\"300\" width=\"300\">";
+  pic3 = document.getElementById('pic3').innerHTML = "<img src=\"img/" + pictures[2].url+"\" height=\"300\" width=\"300\">";
 
 }
 
-
-begining();
 
 pic1.addEventListener('click', render);
 pic2.addEventListener('click', render);
 pic3.addEventListener('click', render);
 
+
+function newPictures(){
+  while (gCounter<25){
+    render();
+  }
+}
+
+begining();
 newPictures();
