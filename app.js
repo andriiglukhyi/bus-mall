@@ -72,6 +72,9 @@ pic2.addEventListener('click', render);
 pic3.addEventListener('click', render);
 
 
+
+// https://stackoverflow.com/questions/25028853/addeventlistener-two-functions
+
 function newPictures(){
   while (gCounter<25){
     render();
