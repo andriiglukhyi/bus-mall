@@ -25,7 +25,7 @@ function newElement (){
 var arr3img = function () {
    var counter = 0;
    var images = [];
-   while (counter<6){
+   while (counter<3){
      var index = Math.floor(Math.random() * pictures.length);
      var ran = pictures[index];
      // console.log(ran);
@@ -34,12 +34,13 @@ var arr3img = function () {
       counter++
       ran.shown=true;
       images.push(ran);
+      console.log(images);
+    }
     }
     for (var i = 0; i < pictures.length; i++) {
       if (i !== index) {
         pictures[i].shown = false;
       }
-    }
   }
   return images;
 }
@@ -47,13 +48,12 @@ var arr3img = function () {
 
 function render(){
   var images = arr3img();
-  for (var i = 0; i<3;i++){
-    document.getElementById('pic1').innerHTML = "<img src=\"img/" + images[i].url+"\">";
-    document.getElementById('pic2').innerHTML = "<img src=\"img/" + images[i].url+"\">";
-    document.getElementById('pic3').innerHTML = "<img src=\"img/" + images[i].url+"\">";
+    document.getElementById('pic1').innerHTML = "<img src=\"img/" + images[0].url+"\">";
+    document.getElementById('pic2').innerHTML = "<img src=\"img/" + images[1].url+"\">";
+    document.getElementById('pic3').innerHTML = "<img src=\"img/" + images[2].url+"\">";
   }
   gCounter++
-}
+
 
 
 
