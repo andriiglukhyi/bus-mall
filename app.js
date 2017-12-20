@@ -18,7 +18,6 @@ var stuff=["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg","bu
 function newElement (){
   for (var i=0; i < stuff.length; i++) {
     new Picture(stuff[i]);
-    // console.log(pictures);
   }
 }
 
@@ -34,7 +33,7 @@ var arr3img = function () {
       counter++
       ran.shown=true;
       images.push(ran);
-      console.log(images);
+      // console.log(images);
     }
     }
     for (var i = 0; i < pictures.length; i++) {
@@ -55,9 +54,6 @@ function render(){
   }
 
 
-
-
-
 function begining(){
   newElement();
   var images = arr3img();
@@ -73,7 +69,6 @@ pic3.addEventListener('click', render);
 
 
 
-// https://stackoverflow.com/questions/25028853/addeventlistener-two-functions
 
 function newPictures(){
   while (gCounter<25){
@@ -83,3 +78,10 @@ function newPictures(){
 
 begining();
 newPictures();
+
+
+function save() {
+  list.push(input.value);
+  localStorage.list = list;
+  console.log('list arr:', list);
+  console.log('localStorage list:', localStorage.list);
