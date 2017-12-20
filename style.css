@@ -19,3 +19,11 @@ div img{
   height: 300px;
   width: 300px;
 }
+canvas {
+width: 600px;
+height: 300px;
+}
+#chart1 {
+  width:600px;
+  height: 300px;
+}
