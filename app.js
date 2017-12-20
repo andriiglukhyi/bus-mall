@@ -3,6 +3,10 @@
 var pictures = [];
 var gCounter = 0;
 
+var names = [];
+var times = [];
+var clicks = [];
+
  function Picture(url){
    this.url = url;
    this.name = this.url.split(".")[0];
@@ -35,24 +39,15 @@ var arr3img = function () {
        ran.shown=true;
        ran.showlast = true;
        images.push(ran);
-//    for (var i = 0; i < pictures.length; i++) {
-//      if (i !== imag {
-//        pictures[i].shown = false;
-//        console.log(pictures);
 }
 }
 for (var i = 0; i < pictures.length; i++) {
   if (i !== images[1] && images[2] && images[0]) {
     pictures[i].shown = false;
-    console.log(pictures);
+    // console.log(pictures);
   }
 }
-// for (var i = 0; i < pictures.length; i++) {
-// if (i !== images[1] && images[2] && images[0]) {
-//   pictures[i].showlast = false;
-// }
 return images;
-// }
 }
 
 
@@ -83,43 +78,96 @@ pic3.addEventListener('click', newPictures);
 
 
 
-// function clickCounter(e){
-//   var qwe = e.pic.src.slice(49);
-//   for (var i=0; i<pictures.length; i++){
-//     if ( qwe ===pictures[i].url){
-//       pictures[i].click++
-//     }
-//   }
-// }
+function clickCounter(e){
+  var qwe = e.target.src.slice(49);
+  console.log(qwe);
+  for (var i=0; i<pictures.length; i++){
+    if ( qwe ===pictures[i].url){
+      pictures[i].click++
+    }
+  }
+}
 
-function newPictures(){
-  clickCounter();
+
+
+
+function newPictures(e){
+  var qwe = e.target.src.slice(49);
+  for (var i=0; i<pictures.length; i++){
+    if ( qwe ===pictures[i].url){
+      pictures[i].click++
+  }
+}
   if (gCounter<25){
     render();
     gCounter++
-} else{
+  } else {
+    pic1.removeEventListener('click', newPictures);
+    pic3.removeEventListener('click', newPictures);
+    pic2.removeEventListener('click', newPictures);
+    newData();
+    makeChart1();
+    makeChart2();
+    }
+  }
 
 
-  var canvas = document.getElementById('chart');
+function newData (){
+  for(var i=0; i<pictures.length; i++){
+    names.push(pictures[i].name);
+    clicks.push(pictures[i].click);
+    times.push(pictures[i].timesShown);
+
+  }
+}
+
+function addData(chart, label, data) {
+  chart.data.labels.push(label);
+  chart.data.datasets.forEach((dataset) => {
+    dataset.data.push(data);
+  });
+  chart.update();
+  }
+
+function makeChart1(){
+  var canvas = document.getElementById('chart1');
   var ctx = canvas.getContext('2d');
   var chart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels :
-    }
+      labels :[],
+      datasets:[{
+        data:[]
+    }]
   }
+})
+for (var i=0; i<pictures.length; i++){
+  addData(chart, names[i], times[i]);
+//   // console.log(chart.data.datasets.data);
+}
+
+}
+
+function makeChart2(){
+var canvas = document.getElementById('chart2');
+var ctx = canvas.getContext('2d');
+var chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels :[],
+    datasets:[{
+      data:[]
+  }]
+}
+})
+for (var i=0; i<pictures.length; i++){
+addData(chart, names[i], clicks[i]);
+//   // console.log(chart.data.datasets.data);
 }
 }
-  //   // for (var i =0; i<3; i++){
-  //   //   images[i].click++
-  //  }
-  // } else{
-  //   var canvas = document.getElementById('chart');
-  //   var ctx = canvas.getContext('2d');
-
-
 
 
 begining();
+// addData();
 
 // newPictures();
