@@ -7,6 +7,10 @@ var names = [];
 var times = [];
 var clicks = [];
 var list = [];
+var number = 0;
+
+
+/////////////////////////////////////////////////////////////////
 if (localStorage.list) {
   var list = JSON.parse(localStorage.list);
 } else {
@@ -21,21 +25,28 @@ if (localStorage.list) {
    pictures.push(this);
   //  console.log(pictures);
  }
+///////////////////////////////////////////////////////////////////
 
 var stuff=["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg","bubblegum.jpg","chair.jpg", "cthulhu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "sweep.png", "tauntaun.jpg", "unicorn.jpg", "usb.gif", "water-can.jpg", "wine-glass.jpg" ]
 
+
+///////////////////////////////////////////////////////////////////
 function newElement (){
-    if (list === pictures){
-    newData();
-    makeChart1();
-    makeChart2();
-  } else{
-    for (var i=0; i < stuff.length; i++) {
+    if (list.length===pictures.length && list.length !== 0 ){
+      pictures = [];
+      pictures = list;
+      newData();
+      makeChart1();
+      makeChart2();
+    } else{
+      for (var i=0; i < stuff.length; i++) {
       new Picture(stuff[i]);
     }
   }
 }
 
+
+///////////////////////////////////////////////////////////////////
 
 var arr3img = function () {
    var counter = 0;
@@ -59,7 +70,7 @@ for (var i = 0; i < pictures.length; i++) {
 }
 return images;
 }
-
+///////////////////////////////////////////////////////////////////
 
 function render(){
   var images = arr3img();
@@ -70,7 +81,7 @@ function render(){
   }
 
 
-
+///////////////////////////////////////////////////////////////////
 
 
 function begining(){
@@ -80,38 +91,30 @@ function begining(){
 
 }
 
+///////////////////////////////////////////////////////////////////
 
 pic1.addEventListener('click', newPictures);
 pic2.addEventListener('click', newPictures);
 pic3.addEventListener('click', newPictures);
 
 
-
-
-function clickCounter(e){
-  var qwe = e.target.src.slice(49);
-  console.log(qwe);
-  for (var i=0; i<pictures.length; i++){
-    if ( qwe ===pictures[i].url){
-      pictures[i].click++
-    }
-  }
-}
-
-
-
+///////////////////////////////////////////////////////////////////
 
 function newPictures(e){
   var qwe = e.target.src.slice(49);
   for (var i=0; i<pictures.length; i++){
     if ( qwe ===pictures[i].url){
       pictures[i].click++
+    }
   }
-}
+  loadCouner();
 
+  gCounter = number;
   if (gCounter<25){
     render();
     gCounter++
+    saveCounter();
+    savePictures();
     console.log(gCounter)
     save();
   } else {
@@ -124,6 +127,7 @@ function newPictures(e){
     }
   }
 
+///////////////////////////////////////////////////////////////////
 
 function newData (){
   for(var i=0; i<pictures.length; i++){
@@ -134,6 +138,8 @@ function newData (){
   }
 }
 
+///////////////////////////////////////////////////////////////////
+
 function addData(chart, label, data) {
   chart.data.labels.push(label);
   chart.data.datasets.forEach((dataset) => {
@@ -141,6 +147,8 @@ function addData(chart, label, data) {
   });
   chart.update();
   }
+
+///////////////////////////////////////////////////////////////////
 
 function makeChart1(){
   var canvas = document.getElementById('chart1');
@@ -168,8 +176,8 @@ for (var i=0; i<pictures.length; i++){
   addData(chart, names[i], times[i]);
 //   // console.log(chart.data.datasets.data);
 }
-
 }
+///////////////////////////////////////////////////////////////////
 
 function makeChart2(){
 var canvas = document.getElementById('chart2');
@@ -198,14 +206,26 @@ addData(chart, names[i], clicks[i]);
 //   // console.log(chart.data.datasets.data);
 }
 }
-
+///////////////////////////////////////////////////////////////////
 
 begining();
 
-
-
-
-
+///////////////////////////////////////////////////////////////////
 function save(){
     localStorage.list = JSON.stringify(pictures);
   }
+///////////////////////////////////////////////////////////////////
+
+function saveCounter(){
+  localStorage.counter = gCounter
+  }
+///////////////////////////////////////////////////////////////////
+function savePictures(){
+  localStorage.list = JSON.stringify(pictures);
+}
+
+function loadCouner(){
+    if(localStorage.counter){
+      number = parseInt(localStorage.counter);
+    }
+}
