@@ -5,12 +5,7 @@ h1{
 }
 div{
   display: inline-block;
-  border-radius: 2px;
-  border-color: green;
-  width: 300px;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  border-style: solid 2px green;
 }
 section{
   margin-left: auto;
@@ -23,4 +18,16 @@ section{
 div img{
   height: 300px;
   width: 300px;
+}
+canvas {
+width: 25%;
+height: 25%;
+display: inline-block;
+margin-top: 50px;
+margin-left: auto;
+margin-right: auto;
+}
+#chart1 {
+  width:600px;
+  height: 300px;
 }
