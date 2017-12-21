@@ -109,6 +109,7 @@ function newPictures(e){
   }
   loadCouner();
 
+
   gCounter = number;
   if (gCounter<25){
     render();
