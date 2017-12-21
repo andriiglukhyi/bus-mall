@@ -151,8 +151,18 @@ function makeChart1(){
       labels :[],
       datasets:[{
         data:[]
-    }]
-  }
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        yaxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      }
+    }
 })
 for (var i=0; i<pictures.length; i++){
   addData(chart, names[i], times[i]);
@@ -170,9 +180,19 @@ var chart = new Chart(ctx, {
     labels :[],
     datasets:[{
       data:[]
-  }]
-}
-})
+    }]
+  },
+  options: {
+    responsive: false,
+    scales: {
+      yaxes: [{
+        ticks: {
+          beginAtZero: false
+        }
+      }]
+    }
+  }
+  })
 for (var i=0; i<pictures.length; i++){
 addData(chart, names[i], clicks[i]);
 //   // console.log(chart.data.datasets.data);
