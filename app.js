@@ -115,9 +115,9 @@ function newPictures(e){
     console.log(gCounter)
     save();
   } else {
-    pic1.removeEventListener('click', newPictures);
-    pic3.removeEventListener('click', newPictures);
-    pic2.removeEventListener('click', newPictures);
+    document.getElementById("pic1").remove();
+    document.getElementById("pic2").remove();
+    document.getElementById("pic3").remove();
     newData();
     makeChart1();
     makeChart2();
