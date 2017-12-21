@@ -6,7 +6,12 @@ var gCounter = 0;
 var names = [];
 var times = [];
 var clicks = [];
-
+var list = [];
+if (localStorage.list) {
+  var list = JSON.parse(localStorage.list);
+} else {
+  var list= [];
+}
  function Picture(url){
    this.url = url;
    this.name = this.url.split(".")[0];
@@ -20,9 +25,14 @@ var clicks = [];
 var stuff=["bag.jpg","banana.jpg","bathroom.jpg","boots.jpg","breakfast.jpg","bubblegum.jpg","chair.jpg", "cthulhu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "sweep.png", "tauntaun.jpg", "unicorn.jpg", "usb.gif", "water-can.jpg", "wine-glass.jpg" ]
 
 function newElement (){
-  for (var i=0; i < stuff.length; i++) {
-    new Picture(stuff[i]);
-    // console.log(pictures);
+    if (list === pictures){
+    newData();
+    makeChart1();
+    makeChart2();
+  } else{
+    for (var i=0; i < stuff.length; i++) {
+      new Picture(stuff[i]);
+    }
   }
 }
 
@@ -98,9 +108,12 @@ function newPictures(e){
       pictures[i].click++
   }
 }
+
   if (gCounter<25){
     render();
     gCounter++
+    console.log(gCounter)
+    save();
   } else {
     pic1.removeEventListener('click', newPictures);
     pic3.removeEventListener('click', newPictures);
@@ -168,6 +181,11 @@ addData(chart, names[i], clicks[i]);
 
 
 begining();
-// addData();
 
-// newPictures();
+
+
+
+
+function save(){
+    localStorage.list = JSON.stringify(pictures);
+  }
